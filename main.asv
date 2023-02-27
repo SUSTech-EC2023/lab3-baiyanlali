@@ -41,8 +41,7 @@ while (nbEval<T) % [QUESTION] this stopping condition is not perfect, why?
 Scaled_fitness = quadratic_fitness(-fitness); % fitness scaling
 %% TODO: you should implement different parent selection schemes
 % crossoverProb = your_selection_scheme(your_parameters); % generate a probability distribution for selection
-% crossoverProb = RouletteWheel(Scaled_fitness);
-crossoverProb = RankBased(Scaled_fitness);
+crossoverProb = RouletteWheel(Scaled_fitness);
 offspring = nan(lambda, dimension);
 offspring_fitness = nan(lambda, 1);
 for i = 1:lambda/2
@@ -108,14 +107,7 @@ function prob = RouletteWheel(fitness)
 end
 
 function prob = RankBased(fitness)
-    [~, rank] = sort(fitness);
-    prob = (rank)./sum(rank);
-end
-
-function selected_parents = Tournament(parents, fitness, k)
-    rand_selection = randperm(numel(fitness),k);
-    rand_selection = sort(rand_selection);
-    random_num = fitness(rand_selection);
-    [~, I] = sort(random_num);
-    selected_parents = [parents(rand_selection(I(end))), parents(rand_selection(I(end-1)))];
+    [B, I] = sort(fitness);
+    for i=1:length(I):
+        
 end
