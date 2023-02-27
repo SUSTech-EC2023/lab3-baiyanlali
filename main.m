@@ -1,6 +1,6 @@
 clear
 close
-objective = @quadratic_fitness; % Minimization
+objective = @quadratic_fitness1000; % Minimization
 dimension = 30;
 lower_bound = -30 * ones(1,dimension);
 upper_bound = 30 * ones(1,dimension);
